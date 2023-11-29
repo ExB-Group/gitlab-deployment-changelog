@@ -1,0 +1,27 @@
+[project]
+name = ""
+version = ""
+description = ""
+authors = [
+    {name = "Christoph Becker", email = "christoph.becker@exb.de"},
+]
+dependencies = [
+    "flake8>=6.1.0",
+    "pytest>=7.4.3",
+    "pytest-cov>=4.1.0",
+    "python-gitlab>=4.2.0",
+    "python-decouple>=3.8",
+    "pyyaml>=6.0.1",
+    "loguru>=0.7.2",
+]
+requires-python = ">=3.10"
+readme = "README.md"
+license = {text = "MIT"}
+
+
+[tool]
+[tool.pdm]
+[tool.pdm.build]
+includes = [
+    "src/",
+]
