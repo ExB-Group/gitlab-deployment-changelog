@@ -5,7 +5,7 @@ from loguru import logger
 WEBHOOK_URL = config('WEBHOOK_URL', cast=str, default="")
 
 
-def trigger_slack(msg: str) -> None:
+def send_to_slack(msg: str) -> None:
     if not WEBHOOK_URL:
         logger.warning('no WEBHOOK_URL configured')
         logger.info(msg)
@@ -21,6 +21,6 @@ def trigger_slack(msg: str) -> None:
         logger.error('SSL Error, could not send slack msg')
         logger.error(ex)
     except Exception as ex:
-        logger.error('Other exception, could not send slack msg')
+        logger.error('Other exception;')
         logger.error(ex)
     return
