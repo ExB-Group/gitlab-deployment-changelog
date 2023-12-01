@@ -3,10 +3,9 @@
 
 [metadata]
 groups = ["default"]
-cross_platform = true
-static_urls = false
-lock_version = "4.3"
-content_hash = "sha256:c12dd18c1665bc138a577ea0ac4e3a4e0200645405fb77970ab697a4384a192e"
+strategy = ["cross_platform"]
+lock_version = "4.4"
+content_hash = "sha256:04cb5570912bcc30af951c3c3c6754d196d81a58a1ccbe0c7d6abb76b7647c99"
 
 [[package]]
 name = "certifi"
