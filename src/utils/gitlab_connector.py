@@ -66,7 +66,8 @@ class GitlabConnector:
         while deployments_count > 0:
             deployments_count -= 1
             deployment = next(deployments_iter)
-            logger.info(f"{deployment.created_at} deployed_by: {deployment.user['username']}")
+            logger.info(f"Deployment to {environment} created at: {deployment.created_at} "
+                        f"deployed_by: {deployment.user['username']}")
 
             log_entries = []
             mr_iter = deployment.mergerequests.list(iterator=True)
