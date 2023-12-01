@@ -1,9 +1,14 @@
 [project]
-name = ""
-version = ""
-description = ""
+name = "gitlab-deployment-changelog"
+version = "0.0.2"
+description = """Gitlab Deployment Changelog Creator - Get's the last
+deployments for a specific environment and creates a changelog from the merge
+requests and issues"""
+
 authors = [
     {name = "Christoph Becker", email = "christoph.becker@exb.de"},
+    {name = "Lukas Jesche", email = "lukas.jesche@exb.de"},
+    {name = "Riccardo Padoan", email = "riccardo.padoan@exb.de"},
 ]
 dependencies = [
     "flake8>=6.1.0",
@@ -26,3 +31,6 @@ license = {text = "MIT"}
 includes = [
     "src/",
 ]
+
+[tool.pdm.scripts]
+changelog = "src/main.py"
