@@ -1,9 +1,25 @@
 import re
+from dataclasses import dataclass
+from datetime import datetime
 
-from loguru import logger
-from decouple import config
 import gitlab
+from decouple import config
+from loguru import logger
 
+
+@dataclass
+class ChangelogEntry:
+    title: str
+    url: str = None
+    author: str = None
+    is_issue: bool = True
+
+
+@dataclass
+class Deployment:
+    deployed_at: datetime
+    deployed_by: str
+    changelog: list[ChangelogEntry]
 
 class GitlabConnector:
     def __init__(self, personal_api_token: str, project_id: str):
@@ -30,29 +46,47 @@ class GitlabConnector:
     def project(self):
         return self.__gitlab.projects.get(self.project_id)
 
-    def get_changelog(self, environment: str = "staging/the_exb") -> None:
+    def get_changelog(self, environment: str = "staging/the_exb", deployments_count: int = 1) -> list[Deployment]:
         kwargs = {
             'order_by': "finished_at", 'sort': "desc", 'iterator': True,
             "environment": environment, "status": "success"
         }
         deployments_iter = self.project.deployments.list(**kwargs)
-        deployment = next(deployments_iter)
+        deployment_list: list[Deployment] = []
 
-        mr_iter = deployment.mergerequests.list(iterator=True)
-        issues_merged = []
-        for mr in mr_iter:
-            if "Closes" not in mr.description:
-                logger.info(f"somebody ({mr.author['name']}) did something without issue: {mr.title}")
-                continue
-            issue_ids = re.findall(r'#(\d+)', mr.description)
-            if not issue_ids:
-                continue
-            for id in issue_ids:
-                try:
-                    issues_merged.append(self.project.issues.get(id))
-                except gitlab.exceptions.GitlabGetError as error:
-                    if error.response_code != 404:
-                        raise
+        while deployments_count > 0:
+            deployments_count -= 1
+            deployment = next(deployments_iter)
+            logger.info(f"{deployment.created_at} deployed_by: {deployment.user['username']}")
 
-        for issue in issues_merged:
-            logger.info(f"{issue.title}, see {issue.web_url}")
+            log_entries = []
+            mr_iter = deployment.mergerequests.list(iterator=True)
+            issues_merged = []
+            for mr in mr_iter:
+                if mr.description is None or "Closes" not in mr.description:
+                    logger.debug(f"MR without issue: {mr.title}")
+                    log_entries.append(ChangelogEntry(
+                        title=mr.title,
+                        author=mr.author['name'],
+                        url=mr.web_url, is_issue=False)
+                    )
+                    continue
+
+                issue_ids = re.findall(r'#(\d+)', mr.description)
+                if not issue_ids:
+                    logger.warning("MR with description and 'Closes' but with no issues ids")
+                    logger.debug(mr)
+                    continue
+                logger.debug(issue_ids)
+                for id in issue_ids:
+                    try:
+                        issues_merged.append(self.project.issues.get(id))
+                    except gitlab.exceptions.GitlabGetError as error:
+                        if error.response_code != 404:
+                            raise
+            for issue in issues_merged:
+                logger.debug(f"Issue: {issue.title}")
+                logger.debug(issue)
+                log_entries.append(ChangelogEntry(title=issue.title, author=issue.author['username'], url=issue.web_url, is_issue=False))
+            deployment_list.append(Deployment(deployed_at=deployment.created_at, deployed_by=deployment.user['username'], changelog=log_entries))
+        return deployment_list
