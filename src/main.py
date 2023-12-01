@@ -1,4 +1,4 @@
-import sys
+import argparse
 
 from loguru import logger
 
@@ -20,23 +20,31 @@ def _get_emoji_from_issue(changelog_entry) -> str:
     return ICON_FEATURE
 
 
-def slack_msg_from_deployment(dpl: Deployment) -> None:
-    msg = (f":tada: New Deployment to *{dpl.environment}*, deployed at {dpl.deployed_at} by {dpl.deployed_by}.\n"
-           f"It includes:\n")
+def slack_msg_from_deployment(dpl: Deployment, noop: bool) -> None:
+    msg = f":tada: New Deployment to *{dpl.environment}*, deployed at {dpl.deployed_at} by {dpl.deployed_by}.\n"
 
     for changelog_entry in d.changelog:
         emoji = _get_emoji_from_issue(changelog_entry)
         msg += f"{emoji}<{changelog_entry.url}|*{changelog_entry.get_title()}*> by {changelog_entry.author}\n"
-    msg += f"Legend: {ICON_MR} Merge request w/o issues; {ICON_BUGFIX} bugfix; "
+    msg += f"\nLegend: {ICON_MR} Merge request w/o issues; {ICON_BUGFIX} bugfix; "
     msg += f"{ICON_FEATURE} new feature or improvement"
 
     logger.debug(msg)
-    send_to_slack(msg)
+    if not noop:
+        send_to_slack(msg)
+    else:
+        logger.info("Nothing sent to Slack.")
 
 
 if __name__ == '__main__':
+    parser = argparse.ArgumentParser(prog="Gitlab Deployment Changelog")
+    parser.add_argument("env", default="production/the_exb")
+    parser.add_argument("-c", "--count", help="How many last deployments to consider", default=1, type=int)
+    parser.add_argument("-n", "--no_slack", help="Don't send to slack", action='store_true', default=False)
+    args = parser.parse_args()
+
     gc = GitlabConnector.factory()
-    env = sys.argv[1:2] if len(sys.argv) > 2 else "production/the_exb"
-    deployments = gc.get_changelog(env, deployments_count=2)
+    deployments = gc.get_changelog(environment=args.env, deployments_count=args.count)
+
     for d in deployments:
-        slack_msg_from_deployment(d)
+        slack_msg_from_deployment(d, noop=args.no_slack)
