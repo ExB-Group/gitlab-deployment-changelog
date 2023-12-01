@@ -12,14 +12,23 @@ class ChangelogEntry:
     title: str
     url: str = None
     author: str = None
-    is_issue: bool = True
+    issue_iid: int = None
+    issue_labels: list[str] = None
+
+    def get_title(self) -> str:
+        if self.issue_iid:
+            return f"#{self.issue_iid} {self.title}"
+        else:
+            return self.title
 
 
 @dataclass
 class Deployment:
     deployed_at: datetime
     deployed_by: str
+    environment: str
     changelog: list[ChangelogEntry]
+
 
 class GitlabConnector:
     def __init__(self, personal_api_token: str, project_id: str):
@@ -65,10 +74,12 @@ class GitlabConnector:
             for mr in mr_iter:
                 if mr.description is None or "Closes" not in mr.description:
                     logger.debug(f"MR without issue: {mr.title}")
-                    log_entries.append(ChangelogEntry(
-                        title=mr.title,
-                        author=mr.author['name'],
-                        url=mr.web_url, is_issue=False)
+                    log_entries.append(
+                        ChangelogEntry(
+                            title=mr.title,
+                            author=mr.author['name'],
+                            url=mr.web_url
+                        )
                     )
                     continue
 
@@ -87,6 +98,20 @@ class GitlabConnector:
             for issue in issues_merged:
                 logger.debug(f"Issue: {issue.title}")
                 logger.debug(issue)
-                log_entries.append(ChangelogEntry(title=issue.title, author=issue.author['username'], url=issue.web_url, is_issue=False))
-            deployment_list.append(Deployment(deployed_at=deployment.created_at, deployed_by=deployment.user['username'], changelog=log_entries))
+                log_entries.append(
+                    ChangelogEntry(
+                        title=issue.title,
+                        author=issue.author['username'],
+                        url=issue.web_url,
+                        issue_iid=issue.iid,
+                        issue_labels=issue.labels
+                    )
+                )
+            deployment_list.append(
+                Deployment(
+                    deployed_at=deployment.created_at,
+                    deployed_by=deployment.user['username'],
+                    environment=environment,
+                    changelog=log_entries)
+            )
         return deployment_list
