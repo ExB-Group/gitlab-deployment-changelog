@@ -22,7 +22,7 @@ dependencies = [
 requires-python = ">=3.10"
 readme = "README.md"
 license = { text = "MIT" }
-dynamic = ["version"]
+version = "0.0.0"
 
 #[project.scripts]
 #changelog = "gitlab-deployment-changelog.main"
@@ -58,10 +58,21 @@ dev = [
 
 [tool.semantic_release]
 version_variables = ["gitlab-deployment-changelog/__version__.py:__version__"]
+version_toml = ["pyproject.toml:project.version"]
 commit_author = "Semantic commit <a_bot_at@exb.de>"
 branch = "main"
 build_command = "pdm build"
-hvcs = "github"
+tag_format = "v{version}"
+
+[tool.semantic_release.publish]
+dist_glob_patterns = ["dist/*"]
+upload_to_vcs_release = true
+
+[tool.semantic_release.remote]
+name = "origin"
+type = "github"
+ignore_token_for_push = false
+token = { env = "GH_TOKEN" }
 
 [tool.semantic_release.branches.actions-packaging]
 match = "actions-packaging"
