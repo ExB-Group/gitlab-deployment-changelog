@@ -60,6 +60,6 @@ jobs:
         pdm add -G dev git+https://github.com/python-semantic-release/python-semantic-release.git@dependabot/pip/python-gitlab-gte-2-and-lt-5                
         pdm run semantic-release publish
       env:
-        github_token: ${{ secrets.GITHUB_TOKEN }}
+        GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         REPOSITORY_USERNAME: __token__
         REPOSITORY_PASSWORD: ${{ secrets.REPOSITORY_PASSWORD }}
