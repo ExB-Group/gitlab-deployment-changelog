@@ -1,20 +1,19 @@
 [project]
 name = "gitlab-deployment-changelog"
-version = "0.0.3"
 description = """Gitlab Deployment Changelog Creator - Get's the last
 deployments for a specific environment and creates a changelog from the merge
 requests and issues"""
 
 authors = [
-    {name = "Christoph Becker", email = "christoph.becker@exb.de"},
-    {name = "Lukas Jesche", email = "lukas.jesche@exb.de"},
-    {name = "Riccardo Padoan", email = "riccardo.padoan@exb.de"},
+    { name = "Christoph Becker", email = "christoph.becker@exb.de" },
+    { name = "Lukas Jesche", email = "lukas.jesche@exb.de" },
+    { name = "Riccardo Padoan", email = "riccardo.padoan@exb.de" },
 ]
 dependencies = [
     "flake8>=6.1.0",
     "pytest>=7.4.3",
     "pytest-cov>=4.1.0",
-    "python-gitlab>=4.2.0",
+    "python-gitlab>=4.1.1",
     "python-decouple>=3.8",
     "pyyaml>=6.0.1",
     "loguru>=0.7.2",
@@ -22,15 +21,60 @@ dependencies = [
 ]
 requires-python = ">=3.10"
 readme = "README.md"
-license = {text = "MIT"}
+license = { text = "MIT" }
+version = "0.0.0"
 
+#[project.scripts]
+#changelog = "gitlab-deployment-changelog.main"
+
+[build-system]
+requires = ["pdm-pep517>=1.1.0"]
+build-backend = "pdm.pep517.api"
 
 [tool]
 [tool.pdm]
 [tool.pdm.build]
 includes = [
-    "src/",
+    "gitlab-deployment-changelog/",
+    "CHANGELOG.md"
 ]
 
+[tool.pdm.version]
+source = "file"
+path = "gitlab-deployment-changelog/__version__.py"
+
 [tool.pdm.scripts]
-changelog = "src/main.py"
+changelog = "gitlab-deployment-changelog/main.py"
+
+[tool.pdm.dev-dependencies]
+dev = [
+    "flake8>=4.0.1",
+    "pytest>=7.1.2",
+    "pytest-cov>=3.0.0",
+    # fails as long as python-gitlab > 4 is not supported. Merge request
+    # https://github.com/python-semantic-release/python-semantic-release/pull/748
+    "python-semantic-release @ git+https://github.com/python-semantic-release/python-semantic-release.git@dependabot/pip/python-gitlab-gte-2-and-lt-5",
+]
+
+[tool.semantic_release]
+version_variables = ["gitlab-deployment-changelog/__version__.py:__version__"]
+version_toml = ["pyproject.toml:project.version"]
+commit_author = "Semantic commit <a_bot_at@exb.de>"
+branch = "main"
+build_command = "pdm build"
+tag_format = "v{version}"
+
+[tool.semantic_release.publish]
+dist_glob_patterns = ["dist/*"]
+upload_to_vcs_release = true
+
+[tool.semantic_release.remote]
+name = "origin"
+type = "github"
+ignore_token_for_push = false
+token = { env = "GH_TOKEN" }
+
+[tool.semantic_release.branches.actions-packaging]
+match = "actions-packaging"
+prerelease = true
+prerelease_token = "rc"
