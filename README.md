@@ -1,5 +1,7 @@
 # Gitlab Deployment Changelog
 
+Home of this code is now https://github.com/ExB-Group/gitlab-deployment-changelog 
+
 This package grabs the last `n` deployments for a project from gitlab and creates a summary of the merge requests
 and their issues. Decoration is done based on scoped labels `type::`. As of now we cover `bug`. Everything else is
 considered as a feature. Merge requests without issues, were indicated as well.
