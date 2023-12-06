@@ -3,6 +3,7 @@ name: Test & Release
 on:
   push:
     branches:
+      - actions-packaging
       - main
 
 jobs:
