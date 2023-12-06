@@ -14,9 +14,10 @@ def send_to_slack(msg: str) -> None:
         "text": msg
     }
     try:
-        logger.debug(f"To Slack: {msg}")
+        logger.info(f"To Slack: {msg}")
         ret = requests.post(WEBHOOK_URL, json=jsons)
-        logger.debug(ret.json())
+        logger.debug(f"Slack returned status code {ret.status_code}")
+        logger.debug(f"Slack returned '{ret.text}'")
     except requests.exceptions.SSLError as ex:
         logger.error('SSL Error, could not send slack msg')
         logger.error(ex)
