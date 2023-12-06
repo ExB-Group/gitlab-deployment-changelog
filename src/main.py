@@ -1,4 +1,5 @@
 import argparse
+import sys
 
 from loguru import logger
 
@@ -41,7 +42,12 @@ if __name__ == '__main__':
     parser.add_argument("env", default="production/the_exb")
     parser.add_argument("-c", "--count", help="How many last deployments to consider", default=1, type=int)
     parser.add_argument("-n", "--no_slack", help="Don't send to slack", action='store_true', default=False)
+    parser.add_argument("-d", "--debug", help="Show debug output", action='store_true', default=False)
     args = parser.parse_args()
+
+    if not args.debug:
+        logger.remove()
+        logger.add(sys.stdout, level="INFO")
 
     gc = GitlabConnector.factory()
     deployments = gc.get_changelog(environment=args.env, deployments_count=args.count)
