@@ -57,8 +57,7 @@ dev = [
 ]
 
 [tool.semantic_release]
-version_source = "commit"
-version_variable = "gitlab-deployment-changelog/__version__.py:__version__"
+version_variables = ["gitlab-deployment-changelog/__version__.py:__version__"]
 commit_author = "Semantic commit <a_bot_at@exb.de>"
 branch = "main"
 build_command = "pdm build"
