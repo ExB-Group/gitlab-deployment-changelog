@@ -39,7 +39,7 @@ def slack_msg_from_deployment(dpl: Deployment, noop: bool) -> None:
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(prog="Gitlab Deployment Changelog")
-    parser.add_argument("env", default="production/the_exb")
+    parser.add_argument("env", help="Name of the environment", default="production/the_exb")
     parser.add_argument("-c", "--count", help="How many last deployments to consider", default=1, type=int)
     parser.add_argument("-n", "--no_slack", help="Don't send to slack", action='store_true', default=False)
     parser.add_argument("-d", "--debug", help="Show debug output", action='store_true', default=False)
