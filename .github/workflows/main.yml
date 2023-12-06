@@ -53,11 +53,11 @@ jobs:
       run: |
         pip install --user pdm
         pdm install -G :all --dev --no-lock --no-editable
-        which pdm
     - name: Semantic Release
       run: |
         git config user.email "mail@ch-becker.de"
         git config user.name "Christoph via pipeline"
+        pdm add -G dev git+https://github.com/python-semantic-release/python-semantic-release.git@dependabot/pip/python-gitlab-gte-2-and-lt-5                
         pdm run semantic-release publish
       env:
         github_token: ${{ secrets.GITHUB_TOKEN }}
