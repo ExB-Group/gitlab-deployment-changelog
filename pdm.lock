@@ -5,7 +5,7 @@
 groups = ["default", "dev"]
 strategy = ["cross_platform"]
 lock_version = "4.4"
-content_hash = "sha256:3f2e8a0449f66729d19e763e6f7deb6e5089f12974037c5c8e6e10ecd6090987"
+content_hash = "sha256:9ecf829e20f5f365898dd1429326088dbb248c6d71ec58c22f9ff3a69edd5deb"
 
 [[package]]
 name = "annotated-types"
@@ -585,7 +585,7 @@ name = "python-semantic-release"
 version = "8.3.0"
 requires_python = ">=3.7"
 git = "https://github.com/python-semantic-release/python-semantic-release.git"
-ref = "dependabot/pip/python-gitlab-gte-2-and-lt-5"
+ref = "34afe3e720c"
 revision = "34afe3e720c1be5ab023768d8b94293d8b327835"
 summary = "Automatic Semantic Versioning for Python projects"
 dependencies = [
