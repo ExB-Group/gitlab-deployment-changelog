@@ -1,6 +1,6 @@
 [project]
 name = "gitlab-deployment-changelog"
-version = "0.0.2"
+version = "0.0.3"
 description = """Gitlab Deployment Changelog Creator - Get's the last
 deployments for a specific environment and creates a changelog from the merge
 requests and issues"""
