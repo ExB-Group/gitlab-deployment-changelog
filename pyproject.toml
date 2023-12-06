@@ -51,13 +51,20 @@ dev = [
     "flake8>=4.0.1",
     "pytest>=7.1.2",
     "pytest-cov>=3.0.0",
-#    "python-semantic-release>=7.31.2",  # fails as long as py-gitlab > 4 is not supported
+    # fails as long as python-gitlab > 4 is not supported. Merge request
+    # https://github.com/python-semantic-release/python-semantic-release/pull/748
+    "python-semantic-release @ git+https://github.com/python-semantic-release/python-semantic-release.git@dependabot/pip/python-gitlab-gte-2-and-lt-5",
 ]
 
-#[tool.semantic_release]
-#version_source = "commit"
-#version_variable = "gitlab-deployment-changelog/__version__.py:__version__"
-#commit_author = "Semantic commit <a_bot_at@exb.de>"
-#branch = "main"
-#build_command = "pdm build"
-#hvcs = "github"
+[tool.semantic_release]
+version_source = "commit"
+version_variable = "gitlab-deployment-changelog/__version__.py:__version__"
+commit_author = "Semantic commit <a_bot_at@exb.de>"
+branch = "main"
+build_command = "pdm build"
+hvcs = "github"
+
+[tool.semantic_release.branches.actions-packaging]
+match = "actions-packaging"
+prerelease = true
+prerelease_token = "rc"
