@@ -2,10 +2,10 @@
 # It is not intended for manual editing.
 
 [metadata]
-groups = ["default"]
+groups = ["default", "dev"]
 strategy = ["cross_platform"]
 lock_version = "4.4"
-content_hash = "sha256:04cb5570912bcc30af951c3c3c6754d196d81a58a1ccbe0c7d6abb76b7647c99"
+content_hash = "sha256:d6cdb27d673b2da0355bad1bb6950a412f385fd6db3f835c092aabe3b881e518"
 
 [[package]]
 name = "certifi"
