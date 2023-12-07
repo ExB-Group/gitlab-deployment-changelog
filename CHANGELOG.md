@@ -2,6 +2,19 @@
 
 
 
+## v0.1.3 (2023-12-07)
+
+### Fix
+
+* fix: doc urls ([`5d6a3f1`](https://github.com/ExB-Group/gitlab-deployment-changelog/commit/5d6a3f13d85a331c685e01cf523536f3b221ae76))
+
+### Unknown
+
+* doc: add mandatory setup steps to readme ([`3823551`](https://github.com/ExB-Group/gitlab-deployment-changelog/commit/3823551f301388c43ebbb13e160f3c96e808908c))
+
+* doc: add homepage ([`5b9a964`](https://github.com/ExB-Group/gitlab-deployment-changelog/commit/5b9a964f06412671534611a6d6b1af6e6d28cc7d))
+
+
 ## v0.1.2 (2023-12-07)
 
 ### Fix
