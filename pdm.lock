@@ -5,7 +5,7 @@
 groups = ["default", "dev"]
 strategy = ["cross_platform"]
 lock_version = "4.4"
-content_hash = "sha256:9ecf829e20f5f365898dd1429326088dbb248c6d71ec58c22f9ff3a69edd5deb"
+content_hash = "sha256:7ffa92e18c1d61a7162162c301b5431d7dadd4807549c4359102fccc6f39fce0"
 
 [[package]]
 name = "annotated-types"
