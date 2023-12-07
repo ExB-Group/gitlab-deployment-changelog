@@ -2,11 +2,33 @@
 
 
 
-## v0.1.0 (2023-12-06)
+## v0.0.1-rc.1 (2023-12-07)
 
 ### Chore
 
+* chore: GH_TOKEN ([`f454f71`](https://github.com/ExB-Group/gitlab-deployment-changelog/commit/f454f7176cebde04bec62574ba091fa02d93be50))
+
+* chore: test sem release as action ([`9e0fd33`](https://github.com/ExB-Group/gitlab-deployment-changelog/commit/9e0fd33b7df2a0e94e67790f6474bb6c6a382f82))
+
+* chore: test sem release as action ([`40cb6f7`](https://github.com/ExB-Group/gitlab-deployment-changelog/commit/40cb6f7c10a84e7e430ee05ac94ae3a4861d17a8))
+
+* chore: update pdm ([`84d1a41`](https://github.com/ExB-Group/gitlab-deployment-changelog/commit/84d1a415284c568bcb2857e4799d4fb51d71ebb4))
+
 * chore: add hash for sem release ([`5b0a65a`](https://github.com/ExB-Group/gitlab-deployment-changelog/commit/5b0a65a97c239243126b88a30194a8888946ff43))
+
+### Fix
+
+* fix: manually run semantic ([`8953a51`](https://github.com/ExB-Group/gitlab-deployment-changelog/commit/8953a51c4bd4a70e699b9b6abcf20245b3ef7e26))
+
+* fix: add pdm dep ([`53e1c57`](https://github.com/ExB-Group/gitlab-deployment-changelog/commit/53e1c570c8c1f75e54b5260677dea9edfc1e2370))
+
+* fix: github_token as input ([`6c70a2a`](https://github.com/ExB-Group/gitlab-deployment-changelog/commit/6c70a2ae71009316ae0cd858ca4a8c26e4803a57))
+
+* fix: tests ([`f12e385`](https://github.com/ExB-Group/gitlab-deployment-changelog/commit/f12e38581ef8d93281db380cd9edf456bd2e49af))
+
+### Refactor
+
+* refactor: correct module name ([`4bbd1b8`](https://github.com/ExB-Group/gitlab-deployment-changelog/commit/4bbd1b8aa2fee0f292ca6a56553756ba0e4c28df))
 
 ### Unknown
 
