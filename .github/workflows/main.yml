@@ -51,24 +51,9 @@ jobs:
       run: |
         pip install --user pdm
         pdm install -G :all --dev --no-lock --no-editable
-    - name: Python Semantic Release
-      uses: python-semantic-release/python-semantic-release@master
-      with:
-        github_token: ${{ secrets.GITHUB_TOKEN }}
-#
-#    - run: git checkout main
-##    - name: Fetch main
-##      run: git fetch --prune origin +refs/heads/main:refs/remotes/origin/main
-#    - name: Install dependencies
-#      run: |
-#        pip install --user pdm
-#        pdm install -G :all --dev --no-lock --no-editable
-#    - name: Semantic Release
-#      run: |
-#        git config user.email "mail@ch-becker.de"
-#        git config user.name "Christoph via pipeline"
-#        pdm run semantic-release publish
-#      env:
-#        GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-#        REPOSITORY_USERNAME: __token__
-#        REPOSITORY_PASSWORD: ${{ secrets.REPOSITORY_PASSWORD }}
+        pdm run semantic-release version
+        pdm run semantic-release publish
+      env:
+        GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        REPOSITORY_USERNAME: __token__
+        REPOSITORY_PASSWORD: ${{ secrets.REPOSITORY_PASSWORD }}
