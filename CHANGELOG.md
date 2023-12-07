@@ -2,6 +2,13 @@
 
 
 
+## v0.1.0-rc.3 (2023-12-07)
+
+### Feature
+
+* feat: use twine to upload package ([`bafe53f`](https://github.com/ExB-Group/gitlab-deployment-changelog/commit/bafe53f0515286bc4c773139d4bdeea7b89f27c6))
+
+
 ## v0.1.0-rc.2 (2023-12-07)
 
 ### Feature
