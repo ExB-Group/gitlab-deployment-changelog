@@ -2,6 +2,13 @@
 
 
 
+## v0.0.2 (2023-12-07)
+
+### Fix
+
+* fix: rm todos ([`d648484`](https://github.com/ExB-Group/gitlab-deployment-changelog/commit/d648484bab07764a2a73960615980d9eea1139d2))
+
+
 ## v0.0.1 (2023-12-07)
 
 ### Chore
