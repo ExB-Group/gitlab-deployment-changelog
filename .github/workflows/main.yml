@@ -55,5 +55,5 @@ jobs:
         pdm run semantic-release publish
       env:
         GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        REPOSITORY_USERNAME: __token__
-        REPOSITORY_PASSWORD: ${{ secrets.REPOSITORY_PASSWORD }}
+        TWINE_USERNAME: __token__
+        TWINE_PASSWORD: ${{ secrets.REPOSITORY_PASSWORD }}
