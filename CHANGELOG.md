@@ -2,6 +2,13 @@
 
 
 
+## v0.1.0 (2023-12-07)
+
+### Feature
+
+* feat: use pdm publish ([`d937627`](https://github.com/ExB-Group/gitlab-deployment-changelog/commit/d937627c5a37ce6f04c33c155ac808455c0b348c))
+
+
 ## v0.0.2 (2023-12-07)
 
 ### Fix
