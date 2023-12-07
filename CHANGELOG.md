@@ -2,6 +2,13 @@
 
 
 
+## v0.1.0-rc.4 (2023-12-07)
+
+### Feature
+
+* feat: fix twine env secrets ([`2c290f5`](https://github.com/ExB-Group/gitlab-deployment-changelog/commit/2c290f5df105e3178ba512bf21b8c0c6fbe317f1))
+
+
 ## v0.1.0-rc.3 (2023-12-07)
 
 ### Feature
