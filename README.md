@@ -21,6 +21,3 @@ considered as a feature. Merge requests without issues, were indicated as well.
 
 - call it with the environment name as argument, e.g., `pdm run changelog staging/the_exb`
 
-## TODO
-
-- semantic versioning added
