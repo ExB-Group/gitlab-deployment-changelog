@@ -50,9 +50,7 @@ jobs:
       run: |
         pip install --user pdm
         pdm install -G :all --dev --no-lock --no-editable
-        pdm run semantic-release version
-        pdm run twine upload dist/*
-        pdm run semantic-release publish
+        pdm run semantic-release version && pdm run twine upload dist/* && pdm run semantic-release publish
       env:
         GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         TWINE_USERNAME: __token__
