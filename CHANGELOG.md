@@ -2,6 +2,13 @@
 
 
 
+## v0.1.0-rc.1 (2023-12-07)
+
+### Feature
+
+* feat: use twine to upload package ([`973f9b2`](https://github.com/ExB-Group/gitlab-deployment-changelog/commit/973f9b287b983b666c1a752a37fdaebb6775620f))
+
+
 ## v0.0.1-rc.1 (2023-12-07)
 
 ### Chore
