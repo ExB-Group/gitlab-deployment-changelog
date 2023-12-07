@@ -2,6 +2,13 @@
 
 
 
+## v0.1.0-rc.2 (2023-12-07)
+
+### Feature
+
+* feat: use twine to upload package ([`ce81013`](https://github.com/ExB-Group/gitlab-deployment-changelog/commit/ce810130b77502207c00776889a859e5498b26d4))
+
+
 ## v0.1.0-rc.1 (2023-12-07)
 
 ### Feature
