@@ -3,8 +3,8 @@ import sys
 
 from loguru import logger
 
-from utils.gitlab_connector import GitlabConnector, Deployment
-from utils.slack import send_to_slack
+from .utils.gitlab_connector import GitlabConnector, Deployment
+from .utils.slack import send_to_slack
 
 BUG_LABEL = "type::bug"
 ICON_MR = ":gear:"
@@ -37,7 +37,7 @@ def slack_msg_from_deployment(dpl: Deployment, noop: bool) -> None:
         logger.info("Nothing sent to Slack.")
 
 
-if __name__ == '__main__':
+def main():
     parser = argparse.ArgumentParser(prog="Gitlab Deployment Changelog")
     parser.add_argument("env", help="Name of the environment", default="production/the_exb")
     parser.add_argument("-c", "--count", help="How many last deployments to consider", default=1, type=int)
@@ -54,3 +54,7 @@ if __name__ == '__main__':
 
     for d in deployments:
         slack_msg_from_deployment(d, noop=args.no_slack)
+
+
+if __name__ == '__main__':
+    main()
