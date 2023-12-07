@@ -2,6 +2,13 @@
 
 
 
+## v0.1.2 (2023-12-07)
+
+### Fix
+
+* fix: pyproject description shortened ([`b563ab5`](https://github.com/ExB-Group/gitlab-deployment-changelog/commit/b563ab50bfa295d9a04cc6e8bd02805ee02f482c))
+
+
 ## v0.1.1 (2023-12-07)
 
 ### Fix
