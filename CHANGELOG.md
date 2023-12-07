@@ -2,6 +2,13 @@
 
 
 
+## v0.1.1 (2023-12-07)
+
+### Fix
+
+* fix: pdm debugging ([`f73c13c`](https://github.com/ExB-Group/gitlab-deployment-changelog/commit/f73c13c0123dadf8b17877fb0dd7bb8576d50075))
+
+
 ## v0.1.0 (2023-12-07)
 
 ### Feature
