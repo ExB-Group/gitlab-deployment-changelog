@@ -1,8 +1,6 @@
 [project]
 name = "gitlab-deployment-changelog"
-description = """Gitlab Deployment Changelog Creator - Get's the last
-deployments for a specific environment and creates a changelog from the merge
-requests and issues"""
+description = "Gitlab Deployment Changelog Creator"
 
 authors = [
     { name = "Christoph Becker", email = "christoph.becker@exb.de" },

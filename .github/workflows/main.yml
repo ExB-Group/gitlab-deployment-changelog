@@ -48,8 +48,6 @@ jobs:
         fetch-depth: 0
     - name: Install, Version and Upload
       run: |
-        set -e
-        env
         pip install --user pdm
         pdm install -G :all --dev --no-lock --no-editable
         pdm run semantic-release version
