@@ -18,7 +18,11 @@ requires-python = ">=3.10"
 readme = "README.md"
 license = { text = "MIT" }
 version = "0.1.2"
-homepage = "https://github.com/ExB-Group/gitlab-deployment-changelog"
+
+[project.urls]
+Homepage = "https://github.com/ExB-Group/gitlab-deployment-changelog"
+Repository = "https://github.com/ExB-Group/gitlab-deployment-changelog"
+Changelog = "https://github.com/ExB-Group/gitlab-deployment-changelog/blob/main/CHANGELOG.md"
 
 [project.scripts]
 gdc = "gitlab_deployment_changelog:gdc.main"
