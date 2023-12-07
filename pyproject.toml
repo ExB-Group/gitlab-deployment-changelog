@@ -19,7 +19,7 @@ dependencies = [
 requires-python = ">=3.10"
 readme = "README.md"
 license = { text = "MIT" }
-version = "0.1.0"
+version = "0.1.0-rc.4"
 
 [project.scripts]
 gdc = "gitlab_deployment_changelog:gdc.main"
@@ -48,6 +48,7 @@ dev = [
     # fails as long as python-gitlab > 4 is not supported. Merge request
     # https://github.com/python-semantic-release/python-semantic-release/pull/748
     "python-semantic-release @ git+https://github.com/python-semantic-release/python-semantic-release.git@34afe3e720c",
+    "twine>=4.0.2",
 ]
 
 [tool.semantic_release]
@@ -61,6 +62,11 @@ tag_format = "v{version}"
 match = "(main|master)"
 prerelease_token = "rc"
 prerelease = false
+
+[tool.semantic_release.branches.packaging_semantic]
+match = "packaging_semantic"
+prerelease_token = "rc"
+prerelease = true
 
 [tool.semantic_release.publish]
 dist_glob_patterns = ["dist/*"]
