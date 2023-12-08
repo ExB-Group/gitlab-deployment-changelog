@@ -2,6 +2,17 @@
 
 
 
+## v0.1.4 (2023-12-08)
+
+### Chore
+
+* chore: add matrix build Python 3.10-3.12 ([`40d3f9c`](https://github.com/ExB-Group/gitlab-deployment-changelog/commit/40d3f9cb970b57df6e391357fda9ab00a0ed7c8e))
+
+### Fix
+
+* fix: Deployment reference incorrect ([`2da0e13`](https://github.com/ExB-Group/gitlab-deployment-changelog/commit/2da0e13a3b7bc3055eef96891c19569de90ad12a))
+
+
 ## v0.1.3 (2023-12-07)
 
 ### Fix
