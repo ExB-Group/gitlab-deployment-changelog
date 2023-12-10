@@ -2,6 +2,13 @@
 
 
 
+## v0.1.5 (2023-12-10)
+
+### Fix
+
+* fix: use merged semantic release ([`67722cb`](https://github.com/ExB-Group/gitlab-deployment-changelog/commit/67722cb2222f5fd73880b73682758150822708fc))
+
+
 ## v0.1.4 (2023-12-08)
 
 ### Chore
