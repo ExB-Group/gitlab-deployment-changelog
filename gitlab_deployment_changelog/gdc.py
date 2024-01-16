@@ -41,7 +41,7 @@ def __get_default_text(dpl: Deployment) -> str:
     return msg
 
 
-def slack_msg_from_deployment(dpl: Deployment, noop: bool, verbose: bool) -> bool:
+def slack_msg_from_deployment(dpl: Deployment, noop: bool, verbose: bool = False) -> bool:
     if verbose:
         msg = __get_verbose_text(dpl)
     else:
