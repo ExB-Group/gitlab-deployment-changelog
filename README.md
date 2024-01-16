@@ -33,6 +33,7 @@ options:
                         How many last deployments to consider
   -n, --no_slack        Dont send to slack
   -d, --debug           Show debug output
+  -v, --verbose         Show more information incl legend
 
 > gdc environment_to_run_again  # find merges and issues which were deployed
 ```

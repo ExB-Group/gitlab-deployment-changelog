@@ -21,14 +21,31 @@ def _get_emoji_from_issue(changelog_entry) -> str:
     return ICON_FEATURE
 
 
-def slack_msg_from_deployment(dpl: Deployment, noop: bool) -> bool:
+def __get_verbose_text(dpl: Deployment) -> str:
     msg = f":tada: New Deployment to *{dpl.environment}*, deployed at {dpl.deployed_at} by {dpl.deployed_by}.\n"
 
     for changelog_entry in dpl.changelog:
         emoji = _get_emoji_from_issue(changelog_entry)
-        msg += f"{emoji}<{changelog_entry.url}|*{changelog_entry.get_title()}*> by {changelog_entry.author}\n"
+        msg += f"{emoji}<{changelog_entry.url}|*{changelog_entry.get_title()}*> created by {changelog_entry.author}\n"
+
     msg += f"\nLegend: {ICON_MR} Merge request w/o issues; {ICON_BUGFIX} bugfix; "
     msg += f"{ICON_FEATURE} new feature or improvement"
+    return msg
+
+
+def __get_default_text(dpl: Deployment) -> str:
+    msg = f":tada: New Deployment to *{dpl.environment}*\n"
+    for changelog_entry in dpl.changelog:
+        emoji = _get_emoji_from_issue(changelog_entry)
+        msg += f"{emoji}<{changelog_entry.url}|*{changelog_entry.get_title()}*>\n"
+    return msg
+
+
+def slack_msg_from_deployment(dpl: Deployment, noop: bool, verbose: bool) -> bool:
+    if verbose:
+        msg = __get_verbose_text(dpl)
+    else:
+        msg = __get_default_text(dpl)
 
     logger.debug(msg)
     if not noop:
@@ -45,6 +62,7 @@ def main():
     parser.add_argument("-c", "--count", help="How many last deployments to consider", default=1, type=int)
     parser.add_argument("-n", "--no_slack", help="Don't send to slack", action='store_true', default=False)
     parser.add_argument("-d", "--debug", help="Show debug output", action='store_true', default=False)
+    parser.add_argument("-v", "--verbose", help="Show more output", action='store_true', default=False)
     args = parser.parse_args()
 
     if not args.debug:
@@ -55,7 +73,7 @@ def main():
     deployments = gc.get_changelog(environment=args.env, deployments_count=args.count)
 
     for d in deployments:
-        slack_msg_from_deployment(d, noop=args.no_slack)
+        slack_msg_from_deployment(d, noop=args.no_slack, verbose=args.verbose)
 
 
 if __name__ == '__main__':
