@@ -2,6 +2,17 @@
 
 
 
+## v0.2.0 (2024-01-16)
+
+### Feature
+
+* feat: unclutter messages as default, old version available as verbose option ([`dabcba9`](https://github.com/ExB-Group/gitlab-deployment-changelog/commit/dabcba954029ef810125375b6d21f618e62e0ae1))
+
+### Fix
+
+* fix: default args ([`6fededa`](https://github.com/ExB-Group/gitlab-deployment-changelog/commit/6fededa73d340a8845061531628b8637345fd267))
+
+
 ## v0.1.5 (2023-12-10)
 
 ### Fix
